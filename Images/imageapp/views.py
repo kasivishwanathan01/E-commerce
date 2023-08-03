@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 def home(request):
-    return render(request, 'imageapp\home.html')
+    return render(request, 'imageapp/home.html')
 
 # from imageapp.forms import UserImageForm    
 # from .models import UploadImage  
@@ -33,15 +33,15 @@ def image(request):
         if form.is_valid():
             form.save()
             img_obj = form.instance
-            return render(request, 'imageapp\image.html', {'form': form, 'img_obj': img_obj})
+            return render(request, 'imageapp/image.html', {'form': form, 'img_obj': img_obj})
     else:
         form = ImageForm()
-    return render(request, 'imageapp\image.html', {'form': form})
+    return render(request, 'imageapp/image.html', {'form': form})
 
 def images(request):
     all_images=Image.objects.all()
     context={'all_images':all_images}
-    return render(request, 'imageapp\images.html', context)
+    return render(request, 'imageapp/images.html', context)
 
 
 from .forms import ProductForm, OrderForm
@@ -54,15 +54,15 @@ def product(request):
         if form.is_valid():
             form.save()
             img_obj = form.instance
-            return render(request, 'imageapp\product.html', {'form': form, 'img_obj': img_obj})
+            return render(request, 'imageapp/product.html', {'form': form, 'img_obj': img_obj})
     else:
         form = ProductForm()
-    return render(request, 'imageapp\product.html', {'form': form})
+    return render(request, 'imageapp/product.html', {'form': form})
 
 def products(request):
     all_products=Product.objects.all()
     context={'all_products':all_products}
-    return render(request, 'imageapp\products.html', context)
+    return render(request, 'imageapp/products.html', context)
 
 def order(request, id):
     obj = get_object_or_404(Product, id =id)
